@@ -10,10 +10,11 @@ class SnakeGame(tk.Canvas):
         super().__init__(width = 600, height = 620, background = 'salmon1', highlightthickness = 0 )
 
         self.snake_positions = [(100, 100), (80, 100), (60, 100)]
-
+        self.food_position = (200, 100)
 
         self.assets()
-        self.create_objects()
+        self.create_snake()
+        self.create_food()
 
 
     def assets(self):
@@ -28,10 +29,13 @@ class SnakeGame(tk.Canvas):
             raise
 
 
-    def create_objects(self):
+    def create_snake(self):
         for x_position, y_position in self.snake_positions:
             self.create_image(x_position, y_position, image = self.snake_body, tag = 'test')
 
+
+    def create_food(self):
+        self.create_image(self.food_position[0], self.food_position[1], image = self.food, tag = 'test 2')
 
 
 class SnakeApp:
