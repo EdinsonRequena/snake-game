@@ -70,9 +70,21 @@ class SnakeGame(tk.Canvas):
     
 
     def perform_actions(self):
+        if self.collisions():
+            return
+
         self.snake_move()
         self.after(GAME_SPEED, self.perform_actions)
-    
+
+
+    def collisions(self):
+        head_x_position, head_y_position = self.snake_positions[0]
+
+        return(
+            head_x_position in (0, 600)
+            or head_y_position in (20, 620)
+            or (head_x_position, head_y_position) in self.snake_positions[1:]
+        )
 
 class SnakeApp:
     ''' main class '''
