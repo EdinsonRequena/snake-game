@@ -83,6 +83,7 @@ class SnakeGame(tk.Canvas):
         if self.collisions():
             return
 
+        self.eat_food()
         self.snake_move()
         self.after(GAME_SPEED, self.perform_actions)
 
@@ -108,6 +109,18 @@ class SnakeGame(tk.Canvas):
             and {new_direction, self.direction} not in opposites
         ):
             self.direction = new_direction
+
+
+    def eat_food(self):
+        if self.snake_positions[0] == self.food_position:
+            self.score =+ 1
+            self.snake_positions.append(self.snake_positions[-1])
+
+            self.create_image(*self.snake_positions[-1], image = self.snake_body, tag = 'snake')
+
+            score = self.find_withtag('score')
+            self.itemconfigure(score, text = f'Score: {self.score}')
+
 
 class SnakeApp:
     ''' main class '''
