@@ -1,5 +1,37 @@
-# snake-game
-Snake Game recreation built with python 3
+# Snake Game 🚀
+
+__Recreation of the classic Snake Game__
+
+### Download It 📖
+
+```
+$ git clone https://github.com/EdinsonRequena/snake-game.git
+```
+
+```
+$ cd snake-game
+```
+
+```
+$ pipenv install Pipfile
+```
+
+```
+$ python3 main.py
+```
+
+### Main Developer ✒️
+
+* **Edinson Requena**
+- [YouTube](https://www.youtube.com/channel/UCFXAiceHPFzk81Ooc25_QTg/featured)
+- [Linkedin](https://www.linkedin.com/in/edinson-requena-9496a2178/)
+- [Medium](https://medium.com/@edinsonrequena)
+- [Instagram](https://instagram.com/edinsonrequena)
+- [Twitter](https://twitter.com/requenaea)
 
 
-Under construction
+This video game was developed as part of a project to recreate retro video games. #StayAtHome
+
+---
+From Venezuela with ❤️ for the world.
+
