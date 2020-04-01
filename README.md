@@ -1,4 +1,4 @@
-# Snake Game 🚀
+# Snake Game :snake:
 
 __Recreation of the classic Snake Game__
 
