@@ -1,22 +1,23 @@
 
 
+from random import randint
 import tkinter as tk
 from PIL import Image, ImageTk
 
 
 # define constants
 MOVE_INCREMENT = 20
-MOVES_PER_SECOND = 15
-GAME_SPEED = 1000 // MOVES_PER_SECOND
+moves_per_second = 15
+GAME_SPEED = 1000 // moves_per_second
 
 class SnakeGame(tk.Canvas):
     ''' game settings '''
 
     def __init__(self):
-        super().__init__(width = 600, height = 620, background = 'salmon1', highlightthickness = 0 )
+        super().__init__(width = 600, height = 620, background = 'salmon1', highlightthickness = 0)
 
         self.snake_positions = [(100, 100), (80, 100), (60, 100)]
-        self.food_position = (200, 100)
+        self.food_position = self.new_food_position()
         self.score = 0
         self.direction = 'Right'
         self.bind_all('<Key>', self.on_key_press)
@@ -54,7 +55,7 @@ class SnakeGame(tk.Canvas):
 
 
     def create_score(self):
-        self.create_text(45, 12, text = f'Score: {self.score}', tag = 'socre', fill = '#000', font=('Helvetica', 16) )
+        self.create_text(100, 12, text = f'Score: {self.score} (Speed: {moves_per_second})', tag = 'score', fill = '#000', font=('Helvetica', 16) )
 
 
     def rectangle(self):
@@ -81,6 +82,7 @@ class SnakeGame(tk.Canvas):
 
     def perform_actions(self):
         if self.collisions():
+            self.game_over()
             return
 
         self.eat_food()
@@ -116,10 +118,32 @@ class SnakeGame(tk.Canvas):
             self.score =+ 1
             self.snake_positions.append(self.snake_positions[-1])
 
+            if self.score % 5 == 0:
+                global moves_per_second
+                moves_per_second += 1
+
             self.create_image(*self.snake_positions[-1], image = self.snake_body, tag = 'snake')
 
+            self.food_position = self.new_food_position()
+            self.coords(self.find_withtag('food'), self.food_position)
+
             score = self.find_withtag('score')
-            self.itemconfigure(score, text = f'Score: {self.score}')
+            self.itemconfigure(score, text = f'Score: {self.score} (Speed: {moves_per_second})', tag = 'score')
+
+
+    def new_food_position(self):
+        while True:
+            x_position = randint(1, 29) * MOVE_INCREMENT
+            y_position = randint(3, 30) * MOVE_INCREMENT
+            food_position = (x_position, y_position)
+
+            if food_position not in self.snake_positions:
+                return food_position
+
+
+    def game_over(self):
+        self.delete(tk.ALL)
+        self.create_text(self.winfo_width() / 2, self.winfo_height() / 2, text = f'Game Over! You scored {self.score}!', fill = '#000', font = ('TkDefaultFont', 14))
 
 
 class SnakeApp:
