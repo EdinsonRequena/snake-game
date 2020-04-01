@@ -1,20 +1,27 @@
+'''
+By Edinson Requena.
 
+Github: edinsonrequena
+Linkedin: edinson requena
+Medium: edinsonrequena
+Twitter: requenaea
+Instagram edinsonrequena
+'''
 
 from random import randint
 import tkinter as tk
 from PIL import Image, ImageTk
 
-
-# define constants
+# global variables and constants
 MOVE_INCREMENT = 20
 moves_per_second = 15
 GAME_SPEED = 1000 // moves_per_second
 
 class SnakeGame(tk.Canvas):
-    ''' game settings '''
+    ''' Game Settings '''
 
     def __init__(self):
-        super().__init__(width = 600, height = 620, background = 'salmon1', highlightthickness = 0)
+        super().__init__(width = 600, height = 620, background = 'brown', highlightthickness = 0)
 
         self.snake_positions = [(100, 100), (80, 100), (60, 100)]
         self.food_position = self.new_food_position()
@@ -33,9 +40,11 @@ class SnakeGame(tk.Canvas):
 
     def assets(self):
         try:
+            # Snake image
             self.snake_png = Image.open('./assets/snake.png')
             self.snake_body = ImageTk.PhotoImage(self.snake_png)
 
+            # Food image
             self.food_png = Image.open('./assets/food.png')
             self.food = ImageTk.PhotoImage(self.food_png)
         except IOError as error:
@@ -115,7 +124,7 @@ class SnakeGame(tk.Canvas):
 
     def eat_food(self):
         if self.snake_positions[0] == self.food_position:
-            self.score =+ 1
+            self.score += 1
             self.snake_positions.append(self.snake_positions[-1])
 
             if self.score % 5 == 0:
@@ -147,11 +156,11 @@ class SnakeGame(tk.Canvas):
 
 
 class SnakeApp:
-    ''' main class '''
+    ''' Main Class '''
 
     def run(self):
         root = tk.Tk()
-        root.title('#StayAtHome')
+        root.title('By @edinsonrequena #StayAtHome')
         root.resizable(False, False)
 
         game = SnakeGame()
