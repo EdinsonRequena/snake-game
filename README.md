@@ -20,6 +20,10 @@ $ pipenv install Pipfile
 $ python3 main.py
 ```
 
+### Enjoy ❤️
+
+![snake-game-demo](https://github.com/edinsonrequena/snake-game/blob/master/snake-game-demo.gif)
+
 ### Main Developer ✒️
 
 * **Edinson Requena**
