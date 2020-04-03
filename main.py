@@ -21,7 +21,7 @@ class SnakeGame(tk.Canvas):
     ''' Game Settings '''
 
     def __init__(self):
-        super().__init__(width = 600, height = 620, background = 'brown', highlightthickness = 0)
+        super().__init__(width = 600, height = 620, background = 'VioletRed4', highlightthickness = 0)
 
         self.snake_positions = [(100, 100), (80, 100), (60, 100)]
         self.food_position = self.new_food_position()
